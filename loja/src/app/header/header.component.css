@@ -1,0 +1,131 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.header-principal-mobile{
+    display: none;
+    position: relative;
+}
+.header-principal-mobile,.header-principal{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: aqua;
+    width: 100%;
+}
+.header-principal-mobile{
+    display: none;
+}
+
+.menu-mobile, .menu{
+    font-family: 'Arial';
+}
+.menu-mobile ul, .menu ul{
+    list-style: none;
+    position: relative;
+}
+.menu-mobile{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    text-align: center;
+    width: 100%;
+   /*right: -100%;*/
+}
+.menu ul li{
+    width: 150px;
+    float: left;
+    z-index: 9;
+}
+.menu-mobile a{
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    background: aqua;
+    color: black;
+}
+.menu a{
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    background-color: aqua;
+    color: black;
+}
+.menu-mobile ul ul,.menu ul ul{
+    position: absolute;
+    visibility: hidden;
+}
+.menu-mobile ul li:hover ul,.menu ul li:hover ul{
+    visibility: visible;
+}
+.menu-mobile a:hover,.menu a:hover{
+    background-color: cadetblue;
+    color: #fff;
+}
+.menu-mobile ul ul li,.menu ul ul li{
+    float: none;
+    border: 1px solid #fff;
+}
+.menu-mobile ul ul li a,.menu ul ul li a{
+    background-color: black;
+    color: #fff;
+}
+.menu ul ul li a:hover{
+    background-color: cadetblue;
+}
+label[for="bt_menu1"]{
+    padding: 5px;
+    background-color: #222;
+    margin: 2px 1px;
+    color: #fff;
+    font-family: 'Arial';
+    text-align: center;
+    font-size: 27px;
+    cursor: pointer;
+    width: 46px;
+    border-radius: 9px;    
+}
+
+#bt_menu1{
+    display: none;
+}
+@media (max-width: 800px){
+    label[for="bt_menu1"]{
+        display: block;        
+    }
+    
+    .menu-mobile{        
+        margin-top: 3px;
+        margin-left: -100%;
+        transition: all .5s ease-in-out;    
+    }
+    #bt_menu1:checked ~ .menu-mobile{
+        display: block;
+        margin-left: 0;
+        z-index: 9;
+    }
+    .header-principal-mobile{
+        display: flex;
+        position: relative;
+    }
+    .header-principal{
+        display: none;
+    }
+    
+    .menu-mobile ul li{
+        width: 100%;
+        float: none;
+    }
+    .menu-mobile ul ul{
+        position: static;
+        overflow: hidden;
+        max-height: 0;
+        transition: all .5s ease-in-out;
+    }
+    .menu-mobile ul li:hover ul{
+        height: auto;
+        max-height: 200px;
+    }
+}
