@@ -1,28 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormGroup, FormsModule } from '@angular/forms';
+import { RouteReuseStrategy } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
 import { AppComponent } from './app.component';
-import { EditarComponent } from './estoque/editar/editar.component';
-import { CadastrarComponent } from './estoque/cadastrar/cadastrar.component';
-import { VisualizarComponent } from './estoque/visualizar/visualizar.component';
-import { EstoqueService } from './estoque/estoque.service';
-import { Cadastro } from './estoque/cadastrar/cadastro.models';
+import { AppRoutingModule } from './app-routing.module';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EditarComponent,
-    CadastrarComponent,    
-    VisualizarComponent
-  ],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
-    BrowserModule,
+    BrowserModule, 
+    IonicModule.forRoot(),
     AppRoutingModule,
-    FormsModule
-  ],
-  providers: [EstoqueService],
-  bootstrap: [AppComponent]
+    PipesModule
+    ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

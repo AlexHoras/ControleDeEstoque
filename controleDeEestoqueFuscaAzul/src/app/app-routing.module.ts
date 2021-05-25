@@ -1,18 +1,36 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { CadastrarComponent } from './estoque/cadastrar/cadastrar.component';
-import { EditarComponent } from './estoque/editar/editar.component';
-import { VisualizarComponent } from './estoque/visualizar/visualizar.component';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:"", component:VisualizarComponent},
-  {path:"editar/:id", component:EditarComponent},
-  {path:"cadastrar", component:CadastrarComponent},
+  {
+    path: '',
+    redirectTo: 'folder/Inbox',
+    pathMatch: 'full'
+  },
+  {
+    path: 'folder/:id',
+    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'cadastros',
+    loadChildren: () => import('./cadastros/cadastros.module').then( m => m.CadastrosPageModule)
+  },
+  {
+    path: 'estoques',
+    loadChildren: () => import('./estoques/estoques.module').then( m => m.EstoquesPageModule)
+  },
+  {
+    path: 'saidas',
+    loadChildren: () => import('./saidas/saidas.module').then( m => m.SaidasPageModule)
+  }
+
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
